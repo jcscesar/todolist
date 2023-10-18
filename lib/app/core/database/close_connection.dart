@@ -1,5 +1,5 @@
 class CloseConnection {
-  static void close(db) {
+  void close(db) {
     db?.close();
     db = null;
   }
