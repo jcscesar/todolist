@@ -1,7 +1,8 @@
+import 'dart:async';
+
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:synchronized/synchronized.dart';
-import 'package:todolist/app/core/database/close_connection.dart';
 import 'package:todolist/app/core/database/sqlite_migration_factory.dart';
 
 class SqliteConnectionFactory {
@@ -19,7 +20,7 @@ class SqliteConnectionFactory {
     return _instance!;
   }
 
-  Future<Database> openConnection() async {
+  FutureOr<Database> openConnection() async {
     var databasePath = await getDatabasesPath();
     var databasePathFinal = join(databasePath, _DATABASE_NAME);
     _db ??= await _lock.synchronized(() async {
@@ -35,9 +36,9 @@ class SqliteConnectionFactory {
     return _db!;
   }
 
-  void closeConnection(db) {
-    db?.close();
-    db = null;
+  Future<void> closeConnection() async {
+    await _db?.close();
+    _db = null;
   }
 
   Future<void> _onConfigure(Database db) async {
