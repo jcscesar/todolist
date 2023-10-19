@@ -35,9 +35,9 @@ class SqliteConnectionFactory {
     return _db!;
   }
 
-  void closeConnection(db) {
-    db?.close();
-    db = null;
+  void closeConnection() {
+    _db?.close();
+    _db = null;
   }
 
   Future<void> _onConfigure(Database db) async {
