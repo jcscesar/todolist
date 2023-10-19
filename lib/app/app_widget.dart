@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todolist/app/core/database/sqlite_admin_connection.dart';
+import 'package:todolist/app/modules/auth/login/login_controller.dart';
+import 'package:todolist/app/modules/auth/login/login_page.dart';
 import 'package:todolist/app/modules/splash/splash_page.dart';
 
 class AppWidget extends StatefulWidget {
@@ -30,6 +33,14 @@ class _AppWidgetState extends State<AppWidget> {
       home: const SplashPage(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
+      routes: {
+        '/login': (_) => MultiProvider(
+              providers: [
+                ChangeNotifierProvider(create: (_) => LoginController()),
+              ],
+              child: const LoginPage(),
+            ),
+      },
     );
   }
 }
