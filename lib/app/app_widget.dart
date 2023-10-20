@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todolist/app/core/database/sqlite_admin_connection.dart';
+import 'package:todolist/app/modules/auth/auth_module.dart';
 import 'package:todolist/app/modules/auth/login/login_controller.dart';
 import 'package:todolist/app/modules/auth/login/login_page.dart';
 import 'package:todolist/app/modules/splash/splash_page.dart';
@@ -30,16 +31,12 @@ class _AppWidgetState extends State<AppWidget> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Todo List',
+      initialRoute: '/login',
       home: const SplashPage(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
       routes: {
-        '/login': (_) => MultiProvider(
-              providers: [
-                ChangeNotifierProvider(create: (_) => LoginController()),
-              ],
-              child: const LoginPage(),
-            ),
+        ...AuthModule().routers,
       },
     );
   }
