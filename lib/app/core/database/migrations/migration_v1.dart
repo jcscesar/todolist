@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:sqflite_common/sqlite_api.dart';
 import 'package:todolist/app/core/database/migrations/migration.dart';
 

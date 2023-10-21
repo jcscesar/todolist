@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:todolist/app/core/database/sqlite_admin_connection.dart';
 import 'package:todolist/app/modules/auth/auth_module.dart';
-import 'package:todolist/app/modules/auth/login/login_controller.dart';
-import 'package:todolist/app/modules/auth/login/login_page.dart';
 import 'package:todolist/app/modules/splash/splash_page.dart';
 
 class AppWidget extends StatefulWidget {

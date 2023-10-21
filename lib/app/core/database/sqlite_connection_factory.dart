@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'dart:async';
 
 import 'package:path/path.dart';
@@ -23,6 +25,7 @@ class SqliteConnectionFactory {
   FutureOr<Database> openConnection() async {
     var databasePath = await getDatabasesPath();
     var databasePathFinal = join(databasePath, _DATABASE_NAME);
+    // ignore: body_might_complete_normally_nullable
     _db ??= await _lock.synchronized(() async {
       _db ??= await openDatabase(
         databasePathFinal,
