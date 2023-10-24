@@ -8,14 +8,15 @@ class TodoListLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Image.asset(
           'assets/images/logo.png',
-          height: 200,
+          height: 190,
         ),
         Text(
           'Todo List',
-          style: context.textTheme.headlineSmall,
+          style: context.titleStyle,
         )
       ],
     );

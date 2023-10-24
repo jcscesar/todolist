@@ -36,12 +36,20 @@
       "program": "lib/main.dart",
       "flutterMode": "debug",
       "deviceId": "LMX420KRHUYH75EYVW"
+    },
+    {
+      "name": "android11",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "flutterMode": "debug",
+      "deviceId": "emulator-5554"
     }
   ],
   "compounds": [
     {
       "name": "All Devices",
-      "configurations": ["Motog8", "Lg"]
+      "configurations": ["Motog8", "Lg", "android11"]
     }
   ]
 }

@@ -6,14 +6,44 @@ class TodoUiListConfig {
   TodoUiListConfig._();
 
   static ThemeData get theme => ThemeData(
-        primaryColor: const Color(0xff5c77ce),
-        primaryColorLight: const Color(0xff5c77ce),
+        brightness: Brightness.light,
+        primaryColor: ColorsExtensions().buttonColor,
+        primaryColorLight: ColorsExtensions().buttonColor,
         textTheme: GoogleFonts.mandaliTextTheme(),
+        primaryTextTheme: TextTheme(
+          headlineMedium: TextStyle(
+            color: ColorsExtensions().colorWhite,
+          ),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          suffixStyle: const TextStyle(
+            fontSize: 15,
+            color: Colors.black,
+          ),
+          suffixIconColor: Colors.black,
+          labelStyle: const TextStyle(
+            fontSize: 15,
+            color: Colors.black,
+          ),
+          prefixStyle: const TextStyle(
+            fontSize: 15,
+            color: Colors.black,
+          ),
+          focusColor: Colors.black,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide: const BorderSide(color: Colors.red),
+          ),
+          isDense: true,
+        ),
         textButtonTheme: TextButtonThemeData(
           style: ButtonStyle(
             textStyle: MaterialStateProperty.all(
               const TextStyle(
-                color: Colors.black,
+                color: Colors.white,
               ),
             ),
           ),

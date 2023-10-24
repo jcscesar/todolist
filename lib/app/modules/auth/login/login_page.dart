@@ -20,82 +20,93 @@ class LoginPage extends StatelessWidget {
                 minWidth: constraints.minWidth,
               ),
               child: IntrinsicHeight(
-                child: Column(
-                  children: [
-                    const SizedBox(height: 10),
-                    const TodoListLogo(),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                      ),
-                      child: Form(
-                        child: Column(
-                          children: [
-                            TodoTextFormFiel(),
-                            const SizedBox(height: 20),
-                            TodoTextFormFiel(),
-                            const SizedBox(height: 20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const TextButton(
-                                  onPressed: null,
-                                  child: Text('Esqueceu sua senha'),
-                                ),
-                                ElevatedButton(
-                                  onPressed: () {},
-                                  child: const Padding(
-                                    padding: EdgeInsets.all(10.0),
-                                    child: Text('Login'),
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
+                child: Expanded(
+                  flex: 1,
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 20),
+                      const TodoListLogo(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
                         ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: ColorsExtensions().expandeds,
-                          border: Border(
-                            top: BorderSide(
-                              width: 2,
-                              color: Colors.grey.withAlpha(50),
-                            ),
+                        child: Form(
+                          child: Column(
+                            children: [
+                              TodoTextFormFiel(label: "E-mail"),
+                              const SizedBox(height: 20),
+                              TodoTextFormFiel(
+                                label: "Senha",
+                                obscureText: true,
+                              ),
+                              const SizedBox(height: 20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const TextButton(
+                                    onPressed: null,
+                                    child: Text('Esqueceu sua senha'),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {},
+                                    child: const Padding(
+                                      padding: EdgeInsets.all(10.0),
+                                      child: Text('Login'),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
                           ),
                         ),
-                        child: Column(
-                          children: [
-                            const SizedBox(height: 30),
-                            SignInButton(
-                              Buttons.Google,
-                              text: "Sign up with Google",
-                              padding: const EdgeInsets.all(5),
-                              shape: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                  borderSide: BorderSide.none),
-                              onPressed: () {},
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Text('Não tem conta?'),
-                                TextButton(
-                                  onPressed: () {},
-                                  child: const Text('Cadastre-se'),
-                                ),
-                              ],
-                            )
-                          ],
+                      ),
+                      Expanded(
+                        flex: 0,
+                        child: Container(
+                          height: 10,
                         ),
                       ),
-                    ),
-                  ],
+                      Expanded(
+                        flex: 2,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: ColorsExtensions().expandeds,
+                            border: Border(
+                              top: BorderSide(
+                                width: 2,
+                                color: Colors.grey.withAlpha(50),
+                              ),
+                            ),
+                          ),
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 10),
+                              SignInButton(
+                                Buttons.Google,
+                                text: "Sign up with Google",
+                                padding: const EdgeInsets.all(5),
+                                shape: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                    borderSide: BorderSide.none),
+                                onPressed: () {},
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Text('Não tem conta?'),
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: const Text('Cadastre-se'),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

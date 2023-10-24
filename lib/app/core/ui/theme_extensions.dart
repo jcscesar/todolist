@@ -7,7 +7,7 @@ extension ThemeExtensions on BuildContext {
   TextTheme get textTheme => Theme.of(this).textTheme;
 
   TextStyle get titleStyle => const TextStyle(
-        fontSize: 12,
+        fontSize: 25,
         fontWeight: FontWeight.bold,
         color: Colors.white,
       );
