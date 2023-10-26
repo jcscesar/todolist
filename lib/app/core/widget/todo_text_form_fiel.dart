@@ -27,7 +27,7 @@ class TodoTextFormFiel extends StatelessWidget {
         valueListenable: obscureTextVelueNotifier,
         builder: (_, obscureTextValue, cuild) {
           return SizedBox(
-            height: 60,
+            height: 50,
             child: TextFormField(
               controller: controller,
               validator: validator,

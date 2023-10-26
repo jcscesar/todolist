@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todolist/app/core/ui/colors_extensions.dart';
+import 'package:todolist/app/core/ui/theme_extensions.dart';
 
 class TodoUiListConfig {
   TodoUiListConfig._();
@@ -16,6 +17,15 @@ class TodoUiListConfig {
           ),
         ),
         inputDecorationTheme: InputDecorationTheme(
+          alignLabelWithHint: false,
+          floatingLabelAlignment: FloatingLabelAlignment.start,
+          filled: false,
+          floatingLabelStyle: const TextStyle(
+            fontSize: 18,
+            color: Colors.black,
+            backgroundColor: Colors.transparent,
+            decorationColor: Colors.transparent,
+          ),
           suffixStyle: const TextStyle(
             fontSize: 15,
             color: Colors.black,
@@ -25,9 +35,14 @@ class TodoUiListConfig {
             fontSize: 15,
             color: Colors.black,
           ),
+          hintStyle: const TextStyle(
+            fontSize: 15,
+            color: Colors.black,
+          ),
           prefixStyle: const TextStyle(
             fontSize: 15,
             color: Colors.black,
+            inherit: true,
           ),
           focusColor: Colors.black,
           border: OutlineInputBorder(
@@ -35,7 +50,15 @@ class TodoUiListConfig {
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
-            borderSide: const BorderSide(color: Colors.red),
+            borderSide: BorderSide(
+              color: ColorsExtensions().buttonColor,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide: BorderSide(
+              color: ColorsExtensions().primaryColors,
+            ),
           ),
           isDense: true,
         ),
