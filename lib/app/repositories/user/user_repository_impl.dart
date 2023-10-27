@@ -19,7 +19,7 @@ class UserRepositoryImpl implements UserRepository {
       );
       return userCredencial.user;
     } on FirebaseAuthException catch (e, s) {
-      if (e.code == 'email-already-exists') {
+      if (e.code == 'email-already-in-use') {
         final loginTypes =
             await _firebaseAuth.fetchSignInMethodsForEmail(email);
         if (loginTypes.contains('password')) {

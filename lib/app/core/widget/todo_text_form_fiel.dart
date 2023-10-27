@@ -7,7 +7,7 @@ class TodoTextFormFiel extends StatelessWidget {
   final IconButton? suffixIconButton;
   final ValueNotifier<bool> obscureTextVelueNotifier;
   final TextEditingController? controller;
-  final FormFieldValidator? validator;
+  final String? Function(String?)? validator;
 
   TodoTextFormFiel({
     Key? key,
@@ -27,7 +27,6 @@ class TodoTextFormFiel extends StatelessWidget {
         valueListenable: obscureTextVelueNotifier,
         builder: (_, obscureTextValue, cuild) {
           return SizedBox(
-            height: 50,
             child: TextFormField(
               controller: controller,
               validator: validator,

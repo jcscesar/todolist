@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todolist/app/core/ui/theme_extensions.dart';
+import 'package:todolist/app/core/validator/validators.dart';
 import 'package:todolist/app/core/widget/todo_list_logo.dart';
 import 'package:todolist/app/core/widget/todo_text_form_fiel.dart';
+import 'package:todolist/app/modules/auth/register/register_controller.dart';
+import 'package:validatorless/validatorless.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -11,6 +15,42 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailEC = TextEditingController();
+  final _passwordEC = TextEditingController();
+  final _confirmPasswordEC = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<RegisterController>().addListener(() {
+      final controller = context.read<RegisterController>();
+
+      var success = controller.success;
+      var error = controller.error;
+
+      if (success) {
+        Navigator.of(context).pop();
+      } else if (error != null && error.isNotEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(error),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _emailEC.dispose();
+    _passwordEC.dispose();
+    _confirmPasswordEC.dispose();
+    // context.read<RegisterController>().addListener(() {});
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,6 +102,7 @@ class _RegisterPageState extends State<RegisterPage> {
             padding: EdgeInsets.zero,
             height: MediaQuery.of(context).size.width * .5,
             child: const FittedBox(
+              // ignore: sort_child_properties_last
               child: TodoListLogo(),
               fit: BoxFit.fitHeight,
             ),
@@ -69,36 +110,69 @@ class _RegisterPageState extends State<RegisterPage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Form(
+                key: _formKey,
                 child: Column(
-              children: [
-                TodoTextFormFiel(label: 'E-mail'),
-                const SizedBox(
-                  height: 20,
-                ),
-                TodoTextFormFiel(
-                  label: 'Senha',
-                  obscureText: true,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TodoTextFormFiel(
-                  label: 'Confirma Senha',
-                  obscureText: true,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
-                  height: 40,
-                  width: MediaQuery.of(context).size.width,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Text('Salvar'),
-                  ),
-                ),
-              ],
-            )),
+                  children: [
+                    TodoTextFormFiel(
+                      label: 'E-mail',
+                      controller: _emailEC,
+                      validator: Validatorless.multiple([
+                        Validatorless.required('E-mail obrigatório'),
+                        Validatorless.email('E-mail inválido'),
+                      ]),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    TodoTextFormFiel(
+                      label: 'Senha',
+                      obscureText: true,
+                      controller: _passwordEC,
+                      validator: Validatorless.multiple([
+                        Validatorless.required('Senha obrigatório'),
+                        Validatorless.min(
+                          8,
+                          'Senha deve ter pelo menos 8 caracteres',
+                        ),
+                      ]),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    TodoTextFormFiel(
+                      label: 'Confirma Senha',
+                      obscureText: true,
+                      controller: _confirmPasswordEC,
+                      validator: Validatorless.multiple([
+                        Validatorless.required('Senha obrigatório'),
+                        Validators.compare(
+                          _passwordEC,
+                          'Senha diferente de confirma senha',
+                        ),
+                      ]),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    SizedBox(
+                      height: 40,
+                      width: MediaQuery.of(context).size.width,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          final formValid =
+                              _formKey.currentState?.validate() ?? false;
+                          if (formValid) {
+                            context.read<RegisterController>().registerUser(
+                                  _emailEC.text,
+                                  _passwordEC.text,
+                                );
+                          }
+                        },
+                        child: const Text('Salvar'),
+                      ),
+                    ),
+                  ],
+                )),
           ),
         ],
       ),
