@@ -18,18 +18,28 @@ class _RegisterPageState extends State<RegisterPage> {
         centerTitle: false,
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Todo List',
-              style: TextStyle(fontSize: 10, color: context.primaryColor),
-            ),
-            Text(
-              'Cadastro',
-              style: TextStyle(fontSize: 15, color: context.primaryColor),
-            ),
-          ],
+        title: Container(
+          padding: EdgeInsets.zero,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Todo List',
+                style: TextStyle(
+                  fontSize: 10,
+                  color: context.primaryColor,
+                ),
+              ),
+              Text(
+                'Cadastro ',
+                style: TextStyle(
+                  fontSize: 15,
+                  color: context.primaryColor,
+                ),
+              ),
+            ],
+          ),
         ),
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
