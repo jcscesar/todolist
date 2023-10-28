@@ -4,7 +4,7 @@ import 'package:todolist/app/core/exception/auth_exceptions.dart';
 import 'package:todolist/app/repositories/user/user_repository.dart';
 
 class UserRepositoryImpl implements UserRepository {
-  FirebaseAuth _firebaseAuth;
+  final FirebaseAuth _firebaseAuth;
 
   UserRepositoryImpl({
     required FirebaseAuth firebaseAuth,
@@ -18,6 +18,7 @@ class UserRepositoryImpl implements UserRepository {
         password: password,
       );
       return userCredencial.user;
+      // ignore: unused_catch_stack
     } on FirebaseAuthException catch (e, s) {
       if (e.code == 'email-already-in-use') {
         if (_firebaseAuth.currentUser?.email == email) {

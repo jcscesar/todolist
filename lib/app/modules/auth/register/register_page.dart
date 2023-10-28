@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todolist/app/core/messages/messages.dart';
 import 'package:todolist/app/core/notifier/default_listener_notifier.dart';
 import 'package:todolist/app/core/ui/theme_extensions.dart';
 import 'package:todolist/app/core/validator/validators.dart';
@@ -36,9 +35,7 @@ class _RegisterPageState extends State<RegisterPage> {
         listenerNotifier.dispose();
         Navigator.of(context).pop();
       },
-      errorVoidCallback: (notifier, listenerNotifier) {
-        print('Deu ruimmmmmmm');
-      },
+      errorVoidCallback: (notifier, listenerNotifier) {},
     );
   }
 

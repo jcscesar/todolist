@@ -1,0 +1,11 @@
+# This is a generated file; do not edit or check into version control.
+firebase_auth=/home/jc/.pub-cache/hosted/pub.dev/firebase_auth-4.12.0/
+firebase_auth_web=/home/jc/.pub-cache/hosted/pub.dev/firebase_auth_web-5.8.5/
+firebase_core=/home/jc/.pub-cache/hosted/pub.dev/firebase_core-2.20.0/
+firebase_core_web=/home/jc/.pub-cache/hosted/pub.dev/firebase_core_web-2.8.1/
+path_provider=/home/jc/.pub-cache/hosted/pub.dev/path_provider-2.1.1/
+path_provider_android=/home/jc/.pub-cache/hosted/pub.dev/path_provider_android-2.2.1/
+path_provider_foundation=/home/jc/.pub-cache/hosted/pub.dev/path_provider_foundation-2.3.1/
+path_provider_linux=/home/jc/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
+path_provider_windows=/home/jc/.pub-cache/hosted/pub.dev/path_provider_windows-2.2.1/
+sqflite=/home/jc/.pub-cache/hosted/pub.dev/sqflite-2.3.0/

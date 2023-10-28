@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todolist/app/core/ui/colors_extensions.dart';
-import 'package:todolist/app/core/ui/theme_extensions.dart';
 
 class TodoUiListConfig {
   TodoUiListConfig._();
