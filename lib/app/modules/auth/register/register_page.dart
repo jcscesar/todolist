@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todolist/app/core/messages/messages.dart';
+import 'package:todolist/app/core/notifier/default_listener_notifier.dart';
 import 'package:todolist/app/core/ui/theme_extensions.dart';
 import 'package:todolist/app/core/validator/validators.dart';
 import 'package:todolist/app/core/widget/todo_list_logo.dart';
@@ -23,23 +25,21 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   void initState() {
     super.initState();
-    context.read<RegisterController>().addListener(() {
-      final controller = context.read<RegisterController>();
-
-      var success = controller.success;
-      var error = controller.error;
-
-      if (success) {
+    final defaultListiner = DefaultListenerNotifier(
+        defaultChangeNotifier: context.read<RegisterController>());
+    defaultListiner.listener(
+      context: context,
+      successVoidCallback: (
+        notifier,
+        listenerNotifier,
+      ) {
+        listenerNotifier.dispose();
         Navigator.of(context).pop();
-      } else if (error != null && error.isNotEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(error),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
-    });
+      },
+      errorVoidCallback: (notifier, listenerNotifier) {
+        print('Deu ruimmmmmmm');
+      },
+    );
   }
 
   @override
@@ -47,7 +47,6 @@ class _RegisterPageState extends State<RegisterPage> {
     _emailEC.dispose();
     _passwordEC.dispose();
     _confirmPasswordEC.dispose();
-    // context.read<RegisterController>().addListener(() {});
     super.dispose();
   }
 

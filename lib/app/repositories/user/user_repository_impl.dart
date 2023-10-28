@@ -20,9 +20,7 @@ class UserRepositoryImpl implements UserRepository {
       return userCredencial.user;
     } on FirebaseAuthException catch (e, s) {
       if (e.code == 'email-already-in-use') {
-        final loginTypes =
-            await _firebaseAuth.fetchSignInMethodsForEmail(email);
-        if (loginTypes.contains('password')) {
+        if (_firebaseAuth.currentUser?.email == email) {
           throw AuthExceptions(
             message: 'E-mail já utilizado, por favor escolha outro e-mail',
           );
@@ -32,6 +30,10 @@ class UserRepositoryImpl implements UserRepository {
                 'Você se cadastrou no TodoList pelo Google, por favor utilize ele para entrar!!',
           );
         }
+      } else if (e.code == 'wrong-password' || e.code == 'user-not-found') {
+        throw AuthExceptions(
+          message: 'Login ou senha inválidos',
+        );
       } else {
         throw AuthExceptions(
           message: e.message ?? 'Error ao registrar usuário',
