@@ -1,4 +1,0 @@
-#Thu Oct 19 16:59:18 BRT 2023
-base.0=/home/jc/projeto/flutter/todolist/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
