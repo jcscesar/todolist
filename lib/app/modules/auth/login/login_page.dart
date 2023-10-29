@@ -1,12 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
+import 'package:provider/provider.dart';
+import 'package:todolist/app/core/messages/messages.dart';
+import 'package:todolist/app/core/notifier/default_listener_notifier.dart';
 import 'package:todolist/app/core/ui/colors_extensions.dart';
 import 'package:todolist/app/core/widget/todo_list_logo.dart';
 import 'package:todolist/app/core/widget/todo_text_form_fiel.dart';
+import 'package:todolist/app/modules/auth/login/login_controller.dart';
+import 'package:validatorless/validatorless.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailEC = TextEditingController();
+  final _passwordEC = TextEditingController();
+  final _emailFocus = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    DefaultListenerNotifier(
+      defaultChangeNotifier: context.read<LoginController>(),
+    ).listener(
+      context: context,
+      everVoidCallback: (notifier, listenerNotifier) {
+        if (notifier is LoginController) {
+          if (notifier.hasInfo) {
+            Messages.of(context).showInfo(notifier.infMenssage!);
+          }
+        }
+      },
+      successVoidCallback: (notifier, listenerNotifier) {
+        //Navigator.of(context).pushNamed('');
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,25 +66,65 @@ class LoginPage extends StatelessWidget {
                           horizontal: 20,
                         ),
                         child: Form(
+                          key: _formKey,
                           child: Column(
                             children: [
-                              TodoTextFormFiel(label: "E-mail"),
+                              TodoTextFormFiel(
+                                label: "E-mail",
+                                controller: _emailEC,
+                                focusNode: _emailFocus,
+                                validator: Validatorless.multiple([
+                                  Validatorless.required('E-mail obrigatório'),
+                                  Validatorless.email('E-mail inválido'),
+                                ]),
+                              ),
                               const SizedBox(height: 20),
                               TodoTextFormFiel(
                                 label: "Senha",
                                 obscureText: true,
+                                controller: _passwordEC,
+                                validator: Validatorless.multiple([
+                                  Validatorless.required('Senha obrigatório'),
+                                  Validatorless.min(
+                                    8,
+                                    'Senha deve ter pelo menos 8 caracteres',
+                                  ),
+                                ]),
                               ),
                               const SizedBox(height: 20),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  const TextButton(
-                                    onPressed: null,
-                                    child: Text('Esqueceu sua senha'),
+                                  TextButton(
+                                    onPressed: () {
+                                      if (_emailEC.text.isNotEmpty) {
+                                        context
+                                            .read<LoginController>()
+                                            .forgotPassword(
+                                              _emailEC.text,
+                                            );
+                                      } else {
+                                        _emailFocus.requestFocus();
+                                        Messages.of(context).showError(
+                                          'Digite seu e-mail para recuperar a senha',
+                                        );
+                                      }
+                                    },
+                                    child: const Text('Esqueceu sua senha'),
                                   ),
                                   ElevatedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      final formValid =
+                                          _formKey.currentState?.validate() ??
+                                              false;
+                                      if (formValid) {
+                                        context.read<LoginController>().login(
+                                              _emailEC.text,
+                                              _passwordEC.text,
+                                            );
+                                      }
+                                    },
                                     child: const Padding(
                                       padding: EdgeInsets.all(10.0),
                                       child: Text('Login'),

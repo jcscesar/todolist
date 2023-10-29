@@ -8,6 +8,7 @@ class TodoTextFormFiel extends StatelessWidget {
   final ValueNotifier<bool> obscureTextVelueNotifier;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
+  final FocusNode? focusNode;
 
   TodoTextFormFiel({
     Key? key,
@@ -16,6 +17,7 @@ class TodoTextFormFiel extends StatelessWidget {
     this.suffixIconButton,
     this.controller,
     this.validator,
+    this.focusNode,
   })  : assert(obscureText == true ? suffixIconButton == null : true,
             'obscureText não pode ser enviado em conjunto com suffixIconButton'),
         obscureTextVelueNotifier = ValueNotifier(obscureText),
@@ -30,6 +32,7 @@ class TodoTextFormFiel extends StatelessWidget {
             child: TextFormField(
               controller: controller,
               validator: validator,
+              focusNode: focusNode,
               decoration: InputDecoration(
                 labelText: label,
                 suffixIcon: suffixIconButton ??

@@ -31,4 +31,9 @@ class Messages {
       ),
     );
   }
+
+  void showInfo(String infMenssage) => _showMessage(
+        infMenssage,
+        context.infoColor,
+      );
 }
