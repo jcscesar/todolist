@@ -76,7 +76,6 @@ class UserRepositoryImpl implements UserRepository {
       final loginMethods = await _firebaseAuth.fetchSignInMethodsForEmail(
         email,
       );
-      print('loginMethods: $loginMethods');
       if (loginMethods.isEmpty) {
         await _firebaseAuth.sendPasswordResetEmail(email: email);
       } else {
@@ -86,8 +85,6 @@ class UserRepositoryImpl implements UserRepository {
         );
       }
     } on FirebaseAuthException catch (e, s) {
-      print('e $e');
-      print('s $s');
       throw AuthExceptions(
         message: 'Error ao restada a senha',
       );
