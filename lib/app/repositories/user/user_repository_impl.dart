@@ -2,6 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:todolist/app/core/exception/auth_exceptions.dart';
 
 import 'package:todolist/app/repositories/user/user_repository.dart';
@@ -89,5 +90,53 @@ class UserRepositoryImpl implements UserRepository {
         message: 'Error ao restada a senha',
       );
     }
+  }
+
+  @override
+  Future<User?> googleLogin() async {
+    final googleSignIn = GoogleSignIn();
+    List<String>? loginMethods;
+    try {
+      final googleUser = await googleSignIn.signIn();
+      if (googleUser != null) {
+        loginMethods = await _firebaseAuth.fetchSignInMethodsForEmail(
+          googleUser.email,
+        );
+
+        if (loginMethods.isNotEmpty == []) {
+          throw AuthExceptions(
+            message:
+                'Você utilizou o e-mail para cadastrar no TodoList, caso tenha esquecido sua senha por favor, click no link esqueceu sua senha',
+          );
+        } else {
+          final googleAuth = await googleUser.authentication;
+          final firebaseCredencial = GoogleAuthProvider.credential(
+            accessToken: googleAuth.accessToken,
+            idToken: googleAuth.idToken,
+          );
+          var userCredencial = await _firebaseAuth.signInWithCredential(
+            firebaseCredencial,
+          );
+          return userCredencial.user;
+        }
+      }
+    } on FirebaseAuthException catch (e, s) {
+      if (e.code == 'account-exists-wiyh-different-credential') {
+        throw AuthExceptions(
+          message:
+              'Login inválido você se registrou no TodoList com os seguintes provedores: ${loginMethods?.join(',')}',
+        );
+      } else {
+        throw AuthExceptions(
+          message: 'Error ao realizar o login',
+        );
+      }
+    } finally {}
+  }
+
+  @override
+  Future<void> googleLogout() async {
+    await GoogleSignIn().signOut();
+    _firebaseAuth.signOut();
   }
 }
