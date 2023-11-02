@@ -17,24 +17,15 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -52,11 +43,43 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyAmPZknRcO_v9gUwIMBa6BRd-8sbpcB_Hw',
+    appId: '1:898110178563:web:8fde7c7a273572dd441536',
+    messagingSenderId: '898110178563',
+    projectId: 'my-todo-list-77874',
+    authDomain: 'my-todo-list-77874.firebaseapp.com',
+    storageBucket: 'my-todo-list-77874.appspot.com',
+    measurementId: 'G-E2FN52CR20',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyD_MwWH_ArS_yaZOYqkLkE0D0XluYWsYfA',
     appId: '1:898110178563:android:9930b7a240a149a5441536',
     messagingSenderId: '898110178563',
     projectId: 'my-todo-list-77874',
     storageBucket: 'my-todo-list-77874.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyAPRZ-kJQz8RJlrsCso71DykyTAO0Ap0HE',
+    appId: '1:898110178563:ios:08939ae8b4d39eb1441536',
+    messagingSenderId: '898110178563',
+    projectId: 'my-todo-list-77874',
+    storageBucket: 'my-todo-list-77874.appspot.com',
+    androidClientId: '898110178563-885vmejdfk9i5salpkpajp7j7gv2s99t.apps.googleusercontent.com',
+    iosClientId: '898110178563-0ivelc8egm6hgt9ltvrcuekhussjmmho.apps.googleusercontent.com',
+    iosBundleId: 'br.com.rcsbinfo.todolist',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyAPRZ-kJQz8RJlrsCso71DykyTAO0Ap0HE',
+    appId: '1:898110178563:ios:08939ae8b4d39eb1441536',
+    messagingSenderId: '898110178563',
+    projectId: 'my-todo-list-77874',
+    storageBucket: 'my-todo-list-77874.appspot.com',
+    androidClientId: '898110178563-885vmejdfk9i5salpkpajp7j7gv2s99t.apps.googleusercontent.com',
+    iosClientId: '898110178563-0ivelc8egm6hgt9ltvrcuekhussjmmho.apps.googleusercontent.com',
+    iosBundleId: 'br.com.rcsbinfo.todolist',
   );
 }
