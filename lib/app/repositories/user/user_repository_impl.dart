@@ -58,6 +58,7 @@ class UserRepositoryImpl implements UserRepository {
       throw AuthExceptions(message: e.message ?? 'Error ao realizar login');
     } on FirebaseAuthException catch (e, s) {
       if (e.code == 'wrong-password' ||
+          // ignore: unrelated_type_equality_checks
           e.credential == 'INVALID_LOGIN_CREDENTIALS' ||
           e.code == 'user-not-found') {
         throw AuthExceptions(
@@ -103,6 +104,7 @@ class UserRepositoryImpl implements UserRepository {
           googleUser.email,
         );
 
+        // ignore: unrelated_type_equality_checks
         if (loginMethods.isNotEmpty == []) {
           throw AuthExceptions(
             message:
@@ -132,6 +134,7 @@ class UserRepositoryImpl implements UserRepository {
         );
       }
     } finally {}
+    return null;
   }
 
   @override
