@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todolist/app/core/database/sqlite_admin_connection.dart';
 import 'package:todolist/app/core/ui/todo_ui_list_config.dart';
 import 'package:todolist/app/modules/auth/auth_module.dart';
+import 'package:todolist/app/modules/home/home_module.dart';
 import 'package:todolist/app/modules/splash/splash_page.dart';
 
 class AppWidget extends StatefulWidget {
@@ -30,12 +31,12 @@ class _AppWidgetState extends State<AppWidget> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Todo List',
-      initialRoute: '/login',
       home: const SplashPage(),
       debugShowCheckedModeBanner: false,
       theme: TodoUiListConfig.theme,
       routes: {
         ...AuthModule().routers,
+        ...HomeModule().routers,
       },
     );
   }
