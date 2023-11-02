@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/app/core/database/sqlite_admin_connection.dart';
+import 'package:todolist/app/core/navigator/todo_list_navigator.dart';
 import 'package:todolist/app/core/ui/todo_ui_list_config.dart';
 import 'package:todolist/app/modules/auth/auth_module.dart';
 import 'package:todolist/app/modules/home/home_module.dart';
@@ -34,6 +35,7 @@ class _AppWidgetState extends State<AppWidget> {
       home: const SplashPage(),
       debugShowCheckedModeBanner: false,
       theme: TodoUiListConfig.theme,
+      navigatorKey: TodoListNavigator.navigatorKey,
       routes: {
         ...AuthModule().routers,
         ...HomeModule().routers,
