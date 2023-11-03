@@ -3,6 +3,7 @@ import 'package:todolist/app/core/ui/colors_extensions.dart';
 import 'package:todolist/app/core/ui/theme_extensions.dart';
 import 'package:todolist/app/core/ui/todolisticon_icons.dart';
 import 'package:todolist/app/modules/home/widget/home_drawer.dart';
+import 'package:todolist/app/modules/home/widget/home_filters.dart';
 import 'package:todolist/app/modules/home/widget/home_header.dart';
 
 class HomePage extends StatelessWidget {
@@ -42,6 +43,7 @@ class HomePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     HomeHeader(),
+                    HomeFilters(),
                   ],
                 ),
               ),

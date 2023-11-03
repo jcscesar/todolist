@@ -3,7 +3,7 @@ import 'package:todolist/app/core/ui/colors_extensions.dart';
 
 extension ThemeExtensions on BuildContext {
   Color get errorColor => Colors.red;
-  Color get primaryColor => Theme.of(this).primaryColor;
+  Color get primaryColor => ColorsExtensions().primaryColors;
   Color get infoColor => ColorsExtensions().infoColor;
   Color get primaryColorLight => Theme.of(this).primaryColorLight;
   Color? get buttonColor => Theme.of(this).bottomAppBarTheme.color;
