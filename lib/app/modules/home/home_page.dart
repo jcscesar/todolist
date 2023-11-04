@@ -5,6 +5,8 @@ import 'package:todolist/app/core/ui/todolisticon_icons.dart';
 import 'package:todolist/app/modules/home/widget/home_drawer.dart';
 import 'package:todolist/app/modules/home/widget/home_filters.dart';
 import 'package:todolist/app/modules/home/widget/home_header.dart';
+import 'package:todolist/app/modules/home/widget/home_tasks.dart';
+import 'package:todolist/app/modules/home/widget/home_week_filter.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -31,20 +33,24 @@ class HomePage extends StatelessWidget {
       drawer: HomeDrawer(),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          return ConstrainedBox(
-            constraints: BoxConstraints(
-              minHeight: constraints.maxHeight,
-              minWidth: constraints.maxWidth,
-            ),
-            child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
-              child: const IntrinsicHeight(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    HomeHeader(),
-                    HomeFilters(),
-                  ],
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: constraints.maxHeight,
+                minWidth: constraints.maxWidth,
+              ),
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                child: const IntrinsicHeight(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      HomeHeader(),
+                      HomeFilters(),
+                      HomeWeekFilter(),
+                      HomeTasks(),
+                    ],
+                  ),
                 ),
               ),
             ),
