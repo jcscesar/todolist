@@ -31,6 +31,10 @@ class HomePage extends StatelessWidget {
       ),
       backgroundColor: Color(ColorsExtensions().cinza.value),
       drawer: HomeDrawer(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
+      ),
       body: LayoutBuilder(
         builder: (context, constraints) {
           return SingleChildScrollView(

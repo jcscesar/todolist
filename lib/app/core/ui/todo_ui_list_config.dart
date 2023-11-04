@@ -15,6 +15,9 @@ class TodoUiListConfig {
             color: ColorsExtensions().colorWhite,
           ),
         ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: ColorsExtensions().buttonColor,
+        ),
         inputDecorationTheme: InputDecorationTheme(
           alignLabelWithHint: false,
           floatingLabelAlignment: FloatingLabelAlignment.start,
