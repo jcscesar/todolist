@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:todolist/app/core/ui/colors_extensions.dart';
 import 'package:todolist/app/core/ui/theme_extensions.dart';
 import 'package:todolist/app/core/ui/todolisticon_icons.dart';
@@ -7,9 +8,32 @@ import 'package:todolist/app/modules/home/widget/home_filters.dart';
 import 'package:todolist/app/modules/home/widget/home_header.dart';
 import 'package:todolist/app/modules/home/widget/home_tasks.dart';
 import 'package:todolist/app/modules/home/widget/home_week_filter.dart';
+import 'package:todolist/app/modules/tasks/tasks_module.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  void _goToCreateTask(BuildContext context) {
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 400),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          animation = CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeInQuad,
+          );
+          return ScaleTransition(
+            scale: animation,
+            alignment: Alignment.bottomRight,
+            child: child,
+          );
+        },
+        pageBuilder: (context, animation, secondaryAnimation) {
+          return TasksModule().getPage('/task/create', context);
+        },
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +56,7 @@ class HomePage extends StatelessWidget {
       backgroundColor: Color(ColorsExtensions().cinza.value),
       drawer: HomeDrawer(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => _goToCreateTask(context),
         child: const Icon(Icons.add),
       ),
       body: LayoutBuilder(

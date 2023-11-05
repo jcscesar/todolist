@@ -25,9 +25,9 @@ class SqliteConnectionFactory {
   FutureOr<Database> openConnection() async {
     var databasePath = await getDatabasesPath();
     var databasePathFinal = join(databasePath, _DATABASE_NAME);
-    // ignore: body_might_complete_normally_nullable
-    _db ??= await _lock.synchronized(() async {
-      _db ??= await openDatabase(
+
+    await _lock.synchronized(() async {
+      _db = await openDatabase(
         databasePathFinal,
         version: _VERSION,
         onConfigure: _onConfigure,
@@ -35,7 +35,9 @@ class SqliteConnectionFactory {
         onDowngrade: _onDowngrade,
         onUpgrade: _onUpgrade,
       );
+      return null;
     });
+    print('_db: $_db');
     return _db!;
   }
 

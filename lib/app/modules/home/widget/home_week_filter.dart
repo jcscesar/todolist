@@ -15,8 +15,7 @@ class HomeWeekFilter extends StatelessWidget {
           'DIA DA SEMANA',
           style: context.titleStyle.copyWith(fontSize: 12),
         ),
-        const SizedBox(height: 10),
-        Container(
+        SizedBox(
           height: 95,
           child: DatePicker(
             DateTime.now(),

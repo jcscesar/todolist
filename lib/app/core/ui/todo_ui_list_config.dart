@@ -15,6 +15,22 @@ class TodoUiListConfig {
             color: ColorsExtensions().colorWhite,
           ),
         ),
+        iconButtonTheme: IconButtonThemeData(
+          style: ButtonStyle(
+            iconColor:
+                MaterialStateProperty.all(ColorsExtensions().buttonColor),
+            backgroundColor: MaterialStateProperty.resolveWith((states) {
+              // If the button is pressed, return green, otherwise blue
+              if (states.contains(MaterialState.pressed)) {
+                return Colors.green;
+              }
+              return Colors.blue;
+            }),
+          ),
+        ),
+        iconTheme: IconThemeData(
+          color: ColorsExtensions().buttonColor,
+        ),
         floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: ColorsExtensions().buttonColor,
         ),
