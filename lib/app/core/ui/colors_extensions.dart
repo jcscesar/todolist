@@ -6,5 +6,6 @@ class ColorsExtensions {
   Color expandeds = const Color(0xfff0f3f7);
   Color colorWhite = Colors.white;
   Color infoColor = Colors.blueAccent;
-  Color cinza = const Color(0XFFFAFBFE);
+  Color background = const Color(0XFFFAFBFE);
+  Color cinza = Colors.grey;
 }

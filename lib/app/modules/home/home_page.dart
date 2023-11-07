@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      backgroundColor: Color(ColorsExtensions().cinza.value),
+      backgroundColor: Color(ColorsExtensions().background.value),
       drawer: HomeDrawer(),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _goToCreateTask(context),

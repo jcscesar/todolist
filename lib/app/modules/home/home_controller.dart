@@ -1,0 +1,6 @@
+import 'package:todolist/app/core/notifier/default_change_notifier.dart';
+import 'package:todolist/app/models/task_filter_enum.dart';
+
+class HomeController extends DefaultChangeNotifier {
+  TaskFilterEnum filterSelected = TaskFilterEnum.today;
+}

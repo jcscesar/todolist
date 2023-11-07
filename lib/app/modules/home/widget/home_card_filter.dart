@@ -8,12 +8,14 @@ class HomeCardFilter extends StatelessWidget {
   final String label;
   final TaskFilterEnum taskFilterEnum;
   final TotalTaskModule? totalTaskModule;
+  final bool selected;
 
   const HomeCardFilter({
     Key? key,
     required this.label,
     required this.taskFilterEnum,
     this.totalTaskModule,
+    required this.selected,
   }) : super(key: key);
 
   double _getPercentFinish() {
@@ -32,10 +34,10 @@ class HomeCardFilter extends StatelessWidget {
         maxWidth: 150,
       ),
       decoration: BoxDecoration(
-        color: context.primaryColor,
+        color: selected ? context.primaryColor : Colors.white,
         border: Border.all(
           width: 1,
-          color: ColorsExtensions().cinza.withOpacity(.8),
+          color: ColorsExtensions().cinza,
         ),
         borderRadius: BorderRadius.circular(20),
       ),
@@ -53,7 +55,7 @@ class HomeCardFilter extends StatelessWidget {
             '${totalTaskModule?.totalTasks ?? 0} TASKS',
             style: context.titleStyle.copyWith(
               fontSize: 10,
-              color: Colors.white,
+              color: selected ? Colors.white : Colors.grey,
             ),
           ),
           // ),
@@ -61,7 +63,7 @@ class HomeCardFilter extends StatelessWidget {
             label,
             style: context.titleStyle.copyWith(
               fontSize: 20,
-              color: Colors.white,
+              color: selected ? Colors.white : Colors.black,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -74,10 +76,11 @@ class HomeCardFilter extends StatelessWidget {
             builder: (context, value, child) {
               return LinearProgressIndicator(
                 value: value,
-                valueColor: const AlwaysStoppedAnimation<Color>(
-                  Colors.white,
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  selected ? Colors.white : context.primaryColor,
                 ),
-                backgroundColor: context.primaryColorLight,
+                backgroundColor:
+                    selected ? context.primaryColorLight : Colors.grey.shade300,
               );
             },
           ),

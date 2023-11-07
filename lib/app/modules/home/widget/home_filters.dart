@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todolist/app/core/ui/theme_extensions.dart';
 import 'package:todolist/app/models/task_filter_enum.dart';
 import 'package:todolist/app/models/total_task_module.dart';
+import 'package:todolist/app/modules/home/home_controller.dart';
 import 'package:todolist/app/modules/home/widget/home_card_filter.dart';
 
 class HomeFilters extends StatelessWidget {
@@ -22,20 +24,28 @@ class HomeFilters extends StatelessWidget {
           child: Row(
             children: [
               HomeCardFilter(
-                label: 'AMANHÃ',
-                taskFilterEnum: TaskFilterEnum.today,
-                totalTaskModule: TotalTaskModule(
-                  totalTasks: 10,
-                  totalTasksFinish: 10,
-                ),
-              ),
-              HomeCardFilter(
                 label: 'HOJE',
                 taskFilterEnum: TaskFilterEnum.tomarrow,
                 totalTaskModule: TotalTaskModule(
                   totalTasks: 20,
                   totalTasksFinish: 5,
                 ),
+                selected: context.select<HomeController, TaskFilterEnum>(
+                      (value) => value.filterSelected,
+                    ) ==
+                    TaskFilterEnum.today,
+              ),
+              HomeCardFilter(
+                label: 'AMANHÃ',
+                taskFilterEnum: TaskFilterEnum.today,
+                totalTaskModule: TotalTaskModule(
+                  totalTasks: 10,
+                  totalTasksFinish: 10,
+                ),
+                selected: context.select<HomeController, TaskFilterEnum>(
+                      (value) => value.filterSelected,
+                    ) ==
+                    TaskFilterEnum.tomarrow,
               ),
               HomeCardFilter(
                 label: 'SEMANA',
@@ -44,6 +54,10 @@ class HomeFilters extends StatelessWidget {
                   totalTasks: 30,
                   totalTasksFinish: 5,
                 ),
+                selected: context.select<HomeController, TaskFilterEnum>(
+                      (value) => value.filterSelected,
+                    ) ==
+                    TaskFilterEnum.week,
               ),
               HomeCardFilter(
                 label: 'MÊS',
@@ -52,6 +66,10 @@ class HomeFilters extends StatelessWidget {
                   totalTasks: 40,
                   totalTasksFinish: 40,
                 ),
+                selected: context.select<HomeController, TaskFilterEnum>(
+                      (value) => value.filterSelected,
+                    ) ==
+                    TaskFilterEnum.mounth,
               ),
             ],
           ),
