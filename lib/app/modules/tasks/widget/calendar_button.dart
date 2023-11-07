@@ -12,17 +12,45 @@ class CalendarButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        var lastDate = DateTime.now();
-        lastDate = lastDate.add(const Duration(days: 30 * 365));
+        final now = DateTime.now();
+        // ignore: unnecessary_nullable_for_final_variable_declarations
         final DateTime? selectedDate = await showDatePicker(
           context: context,
           initialDate: DateTime.now(),
-          firstDate: DateTime(2000),
-          lastDate: DateTime(
-            DateTime.now().year + 10,
-            DateTime.now().month + 13,
-            DateTime.now().day + 25,
-          ),
+          firstDate: DateTime(2022),
+          lastDate: DateTime(now.year + 10),
+          builder: (context, child) {
+            return Theme(
+              data: ThemeData().copyWith(
+                colorScheme: const ColorScheme.dark(
+                    onPrimary: Colors.black, // selected text color
+                    onSurface: Colors.amberAccent, // default text color
+                    primary: Colors.amberAccent // circle color
+                    ),
+                dialogBackgroundColor: Colors.black54,
+                textButtonTheme: TextButtonThemeData(
+                  style: TextButton.styleFrom(
+                    textStyle: const TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.normal,
+                      fontSize: 12,
+                    ),
+                    primary: Colors.amber, // color of button's letters
+                    backgroundColor: Colors.black54, // Background color
+                    shape: RoundedRectangleBorder(
+                      side: const BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
+                          style: BorderStyle.solid),
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                  ),
+                ),
+              ),
+              //),
+              child: child!,
+            );
+          },
         );
         // ignore: use_build_context_synchronously
         context.read<TasksController>().selectedDate = selectedDate;
