@@ -1,7 +1,7 @@
-class TotalTaskModule {
+class TotalTaskModel {
   final int totalTasks;
   final int totalTasksFinish;
-  TotalTaskModule({
+  TotalTaskModel({
     required this.totalTasks,
     required this.totalTasksFinish,
   });

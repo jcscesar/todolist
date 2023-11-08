@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todolist/app/core/ui/theme_extensions.dart';
 import 'package:todolist/app/models/task_filter_enum.dart';
-import 'package:todolist/app/models/total_task_module.dart';
+import 'package:todolist/app/models/total_task_model.dart';
 import 'package:todolist/app/modules/home/home_controller.dart';
 import 'package:todolist/app/modules/home/widget/home_card_filter.dart';
 
@@ -26,7 +26,7 @@ class HomeFilters extends StatelessWidget {
               HomeCardFilter(
                 label: 'HOJE',
                 taskFilterEnum: TaskFilterEnum.tomarrow,
-                totalTaskModule: TotalTaskModule(
+                totalTaskModule: TotalTaskModel(
                   totalTasks: 20,
                   totalTasksFinish: 5,
                 ),
@@ -38,7 +38,7 @@ class HomeFilters extends StatelessWidget {
               HomeCardFilter(
                 label: 'AMANHÃ',
                 taskFilterEnum: TaskFilterEnum.today,
-                totalTaskModule: TotalTaskModule(
+                totalTaskModule: TotalTaskModel(
                   totalTasks: 10,
                   totalTasksFinish: 10,
                 ),
@@ -50,7 +50,7 @@ class HomeFilters extends StatelessWidget {
               HomeCardFilter(
                 label: 'SEMANA',
                 taskFilterEnum: TaskFilterEnum.week,
-                totalTaskModule: TotalTaskModule(
+                totalTaskModule: TotalTaskModel(
                   totalTasks: 30,
                   totalTasksFinish: 5,
                 ),
@@ -62,7 +62,7 @@ class HomeFilters extends StatelessWidget {
               HomeCardFilter(
                 label: 'MÊS',
                 taskFilterEnum: TaskFilterEnum.mounth,
-                totalTaskModule: TotalTaskModule(
+                totalTaskModule: TotalTaskModel(
                   totalTasks: 40,
                   totalTasksFinish: 40,
                 ),

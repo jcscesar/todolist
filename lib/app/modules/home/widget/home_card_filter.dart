@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:todolist/app/core/ui/colors_extensions.dart';
 import 'package:todolist/app/core/ui/theme_extensions.dart';
 import 'package:todolist/app/models/task_filter_enum.dart';
-import 'package:todolist/app/models/total_task_module.dart';
+import 'package:todolist/app/models/total_task_model.dart';
 
 class HomeCardFilter extends StatelessWidget {
   final String label;
   final TaskFilterEnum taskFilterEnum;
-  final TotalTaskModule? totalTaskModule;
+  final TotalTaskModel? totalTaskModule;
   final bool selected;
 
   const HomeCardFilter({
