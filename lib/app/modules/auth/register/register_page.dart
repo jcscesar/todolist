@@ -33,7 +33,8 @@ class _RegisterPageState extends State<RegisterPage> {
         listenerNotifier,
       ) {
         listenerNotifier.dispose();
-        Navigator.of(context).pop();
+        // removendo esse pop alteração no authProvider
+        //Navigator.of(context).pop();
       },
       errorVoidCallback: (notifier, listenerNotifier) {},
     );
