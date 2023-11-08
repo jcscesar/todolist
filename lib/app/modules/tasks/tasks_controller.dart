@@ -29,9 +29,7 @@ class TasksController extends DefaultChangeNotifier {
       } else {
         setError('Selecione uma data');
       }
-    } catch (e, s) {
-      print('e: $e');
-      print('s: $s');
+    } catch (e, _) {
       setError('Erro a cadastrar task');
     } finally {
       hideLoading();

@@ -18,7 +18,6 @@ class TaksRepositoryImpl implements TasksRepository {
       'data_hora': date.toIso8601String(),
       'finalizado': 0,
     });
-    print('conn $conn');
   }
 
   @override
