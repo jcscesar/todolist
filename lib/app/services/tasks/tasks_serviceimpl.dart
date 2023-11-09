@@ -46,10 +46,4 @@ class TasksServiceimpl implements TasksService {
       tasks: tasks,
     );
   }
-
-  @override
-  Future<List<TaskModel>> getMounth() {
-    // TODO: implement getMounth
-    throw UnimplementedError();
-  }
 }
