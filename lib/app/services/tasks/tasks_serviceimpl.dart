@@ -9,10 +9,8 @@ class TasksServiceimpl implements TasksService {
     required TasksRepository taksRepository,
   }) : _taksRepository = taksRepository;
   @override
-  Future<void> save(DateTime date, String description) => _taksRepository.save(
-        date,
-        description,
-      );
+  Future<void> save(DateTime date, String description) =>
+      _taksRepository.save(date, description);
 
   @override
   Future<List<TaskModel>> getToday() {
@@ -32,13 +30,10 @@ class TasksServiceimpl implements TasksService {
     DateTime endFilter;
     if (startFilter.weekday != DateTime.monday) {
       startFilter = startFilter.subtract(
-        Duration(
-          days: (startFilter.weekday - 1),
-        ),
+        Duration(days: (startFilter.weekday - 1)),
       );
     }
     endFilter = startFilter.add(const Duration(days: 7));
-
     final tasks = await _taksRepository.findByPeriod(startFilter, endFilter);
     return WeekTaskModel(
       startDate: startFilter,
