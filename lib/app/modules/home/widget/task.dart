@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:todolist/app/models/task_model.dart';
+import 'package:todolist/app/modules/home/home_controller.dart';
 
 class Task extends StatelessWidget {
   final TaskModel model;
   final dataFormat = DateFormat('dd/MM/yy');
-  Task({
-    Key? key,
-    required this.model,
-  }) : super(key: key);
+  Task({Key? key, required this.model}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,8 @@ class Task extends StatelessWidget {
           contentPadding: const EdgeInsets.all(8),
           leading: Checkbox(
             value: model.finished,
-            onChanged: (value) {},
+            onChanged: (value) =>
+                context.read<HomeController>().checkOrUnCheckTask(model),
           ),
           title: Text(
             model.description,

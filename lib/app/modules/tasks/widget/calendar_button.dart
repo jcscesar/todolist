@@ -35,7 +35,7 @@ class CalendarButton extends StatelessWidget {
                       fontWeight: FontWeight.normal,
                       fontSize: 12,
                     ),
-                    primary: Colors.amber, // color of button's letters
+                    foregroundColor: Colors.amber, // color of button's letters
                     backgroundColor: Colors.black54, // Background color
                     shape: RoundedRectangleBorder(
                       side: const BorderSide(

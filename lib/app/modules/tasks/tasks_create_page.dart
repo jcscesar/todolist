@@ -1,7 +1,6 @@
 // ignore_for_file: unused_field
 
 import 'package:flutter/material.dart';
-import 'package:todolist/app/core/notifier/default_change_notifier.dart';
 import 'package:todolist/app/core/notifier/default_listener_notifier.dart';
 import 'package:todolist/app/core/ui/theme_extensions.dart';
 import 'package:todolist/app/core/widget/todo_text_form_fiel.dart';
@@ -68,7 +67,6 @@ class _TasksCreatePageState extends State<TasksCreatePage> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           final valid = _keyForm.currentState?.validate() ?? false;
-          print(valid);
           if (valid) {
             widget._tasksController.save(_descriptionEC.text);
           }
