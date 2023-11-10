@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> _goToCreateTask(BuildContext context) async {
-    Navigator.of(context).push(
+    await Navigator.of(context).push(
       PageRouteBuilder(
         transitionDuration: const Duration(milliseconds: 400),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
